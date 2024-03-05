@@ -1,0 +1,48 @@
+services:
+  nginx:
+    depends_on:
+      - wordpress
+    build: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - type: bind
+        source: ~/Desktop/wordpress_volume
+        target: /var/www/html/
+    networks:
+      - myNetwork
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    expose:
+      - 3306
+    env_file:
+      - .env
+    volumes:
+      - mariadb:/var/lib/mysql/
+    networks:
+      - myNetwork
+  wordpress:
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress
+    container_name: wordpress
+    env_file:
+      - .env
+    ports:
+      - "8080:80"
+    expose:
+      - 9000
+    volumes:
+      - type: bind
+        source: ~/Desktop/wordpress_volume
+        target: /var/www/html
+    networks:
+      - myNetwork
+
+networks:
+  myNetwork:
+volumes:
+  mariadb:
+  wordpress:

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ ! -f /var/www/html/wordpress/wp-config.php ]; then
+	
+	mkdir -p /var/www/html/wordpress
+	cd /var/www/html/wordpress
+
+	wp core download --allow-root
+	wp config create --dbname=$SQL_DATABASE --dbuser=$SQL_USER --dbpass=$SQL_PASSWORD --dbhost=$SQL_HOST --allow-root
+	# sed "s/database_name_here/$SQL_DATABASE/; \
+	# 	s/username_here/$SQL_USER/; \
+	# 	s/password_here/$SQL_PASSWORD/; \
+	# 	s/localhost/$SQL_HOST/" wp-config-sample.php > wp-config.php
+	# wp db create --allow-root
+	wp core install --allow-root \
+					--url=${DOMAIN_NAME} \
+					--title=$SITE_TITLE \
+					--admin_user=$WP_ADMIN \
+					--admin_password=$WP_ADMIN_PASSWORD \
+					--admin_email=$WP_ADMIN_EMAIL \
+					--skip-email 
+
+	wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASS --allow-root
+
+	wp theme install astra --activate --allow-root
+
+	chown -R www-data:www-data /var/www/html/;
+	chown -R 755 /var/www/html/;
+
+fi
+
+#create a directory for php
+if [ ! -d /run/php ]; then
+	mkdir /run/php;
+fi
+
+exec /usr/sbin/php-fpm7.3 -F -R
