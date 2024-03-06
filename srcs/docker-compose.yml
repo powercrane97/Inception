@@ -8,7 +8,7 @@ services:
       - "443:443"
     volumes:
       - type: bind
-        source: ~/Desktop/wordpress_volume
+        source: /home/rarnold/data/wordpress
         target: /var/www/html/
     networks:
       - myNetwork
@@ -20,7 +20,9 @@ services:
     env_file:
       - .env
     volumes:
-      - mariadb:/var/lib/mysql/
+      - type: bind
+        source: /home/rarnold/data/mariadb
+        target: /var/lib/mysql/
     networks:
       - myNetwork
   wordpress:
@@ -30,13 +32,11 @@ services:
     container_name: wordpress
     env_file:
       - .env
-    ports:
-      - "8080:80"
     expose:
       - 9000
     volumes:
       - type: bind
-        source: ~/Desktop/wordpress_volume
+        source: /home/rarnold/data/wordpress
         target: /var/www/html
     networks:
       - myNetwork
