@@ -6,10 +6,7 @@ services:
     container_name: nginx
     ports:
       - "443:443"
-    volumes:
-      - type: bind
-        source: /home/rarnold/data/wordpress
-        target: /var/www/html/
+    volumes: /home/rarnold/data/wordpress:/var/www/html/
     networks:
       - myNetwork
   mariadb:
@@ -31,10 +28,7 @@ services:
       - .env
     expose:
       - 9000
-    volumes:
-      - type: bind
-        source: /home/rarnold/data/wordpress
-        target: /var/www/html
+    volumes: /home/rarnold/data/wordpress:/var/www/html
     networks:
       - myNetwork
 
