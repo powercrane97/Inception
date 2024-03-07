@@ -6,7 +6,8 @@ services:
     container_name: nginx
     ports:
       - "443:443"
-    volumes: /home/rarnold/data/wordpress:/var/www/html/
+    volumes:
+      - /home/rarnold/data/wordpress:/var/www/html/
     networks:
       - myNetwork
   mariadb:
@@ -16,7 +17,8 @@ services:
       - 3306
     env_file:
       - .env
-    volumes: /home/rarnold/data/mariadb:/var/lib/mysql
+    volumes:
+      - /home/rarnold/data/mariadb:/var/lib/mysql
     networks:
       - myNetwork
   wordpress:
