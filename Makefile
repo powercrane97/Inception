@@ -8,6 +8,7 @@ down :
 
 downr : 
 	@docker-compose -p inception -f ./srcs/docker-compose.yml down --rmi all
+	rm -rf ~/data/mariadb/* ~/data/wordpress/*
 
 stop : 
 	@docker-compose -p inception -f ./srcs/docker-compose.yml stop

@@ -7,11 +7,6 @@ if [ ! -f /var/www/html/wordpress/wp-config.php ]; then
 
 	wp core download --allow-root
 	wp config create --dbname=$SQL_DATABASE --dbuser=$SQL_USER --dbpass=$SQL_PASSWORD --dbhost=$SQL_HOST --allow-root
-	# sed "s/database_name_here/$SQL_DATABASE/; \
-	# 	s/username_here/$SQL_USER/; \
-	# 	s/password_here/$SQL_PASSWORD/; \
-	# 	s/localhost/$SQL_HOST/" wp-config-sample.php > wp-config.php
-	# wp db create --allow-root
 	wp core install --allow-root \
 					--url=${DOMAIN_NAME} \
 					--title=$SITE_TITLE \
