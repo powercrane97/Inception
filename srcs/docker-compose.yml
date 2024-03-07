@@ -19,10 +19,7 @@ services:
       - 3306
     env_file:
       - .env
-    volumes:
-      - type: bind
-        source: /home/rarnold/data/mariadb
-        target: /var/lib/mysql/
+    volumes: /home/rarnold/data/mariadb:/var/lib/mysql
     networks:
       - myNetwork
   wordpress:
