@@ -19,6 +19,11 @@ build :
 	@docker-compose -p inception -f ./srcs/docker-compose.yml up -d --build
 
 status : 
-	@docker ps all : up
+	@docker ps -all
+
+logs:
+	docker logs wordpress
+	docker logs mariadb
+	docker logs nginx
 
 .PHONY: all up down stop start status build
