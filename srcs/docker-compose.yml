@@ -30,7 +30,7 @@ services:
       - .env
     expose:
       - 9000
-    volumes: /home/rarnold/data/wordpress:/var/www/html
+    volumes: / - home/rarnold/data/wordpress:/var/www/html
     networks:
       - myNetwork
 
