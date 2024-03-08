@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:oldstable
 
 RUN apt-get update -y && \
 	apt-get install -y wget php7.3 php-fpm php-mysql

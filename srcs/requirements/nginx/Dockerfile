@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:oldstable
 
 # install NGINX and openssl
 RUN apt-get update -y && \
