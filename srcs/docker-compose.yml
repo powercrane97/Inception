@@ -21,9 +21,16 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - myNetwork
+    healthcheck:
+      test: mysqladmin ping --host=localhost -p${SQL_ROOT_PASSWORD}
+      interval: 5s
+      timeout: 1s
+      retries: 20
+      start_period: 5s
   wordpress:
     depends_on:
-      - mariadb
+      mariadb:
+        condititon: service_healthy
     build: ./requirements/wordpress
     container_name: wordpress
     env_file:
