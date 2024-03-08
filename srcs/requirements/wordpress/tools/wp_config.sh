@@ -15,8 +15,6 @@ if [ ! -f /var/www/html/wordpress/wp-config.php ]; then
 
 	wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASS --allow-root
 
-	wp theme install astra --activate --allow-root
-
 	chown -R www-data:www-data /var/www/html/;
 	chown -R 755 /var/www/html/;
 
