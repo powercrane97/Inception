@@ -8,7 +8,7 @@ down :
 
 downr : 
 	@docker-compose -p inception -f ./srcs/docker-compose.yml down --rmi all
-	rm -rf ~/data/mariadb/* ~/data/wordpress/*
+	sudo rm -rf ~/data/mariadb/* ~/data/wordpress/*
 
 stop : 
 	@docker-compose -p inception -f ./srcs/docker-compose.yml stop
@@ -27,4 +27,4 @@ logs:
 	docker logs mariadb
 	docker logs nginx
 
-.PHONY: all up down stop start status build
+.PHONY: all up down stop start status build logs
