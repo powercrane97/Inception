@@ -25,4 +25,4 @@ if [ ! -d /run/php ]; then
 	mkdir /run/php;
 fi
 
-exec /usr/sbin/php-fpm7.3 -F -R
+exec /usr/sbin/php-fpm7.4 -F -R
