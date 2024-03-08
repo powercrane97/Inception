@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # launching mysqld in background
-service mysql start;
+service mariadb start;
 
 # logging into MariaDB to check if database already exists; if not create one.
 if mysql -u "${SQL_USER}" -p"${SQL_PASSWORD}" -e "use ${SQL_DATABASE};" &>/dev/null; then
