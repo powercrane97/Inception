@@ -30,7 +30,7 @@ services:
   wordpress:
     depends_on:
       mariadb:
-        condititon: service_healthy
+        condition: service_healthy
     build: ./requirements/wordpress
     container_name: wordpress
     env_file:
