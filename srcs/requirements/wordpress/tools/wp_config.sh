@@ -1,10 +1,9 @@
 #!/bin/bash
 
-if [ ! -f /var/www/html/wp-config.php ]; then
+if [ ! -f /var/www/html/wordpress/wp-config.php ]; then
 	
-	cd /var/www/html/
+	cd /var/www/html/wordpress
 
-	wp core download --allow-root
 	wp config create --dbname=$SQL_DATABASE --dbuser=$SQL_USER --dbpass=$SQL_PASSWORD --dbhost=$SQL_HOST --allow-root
 	wp core install --allow-root \
 					--url=${DOMAIN_NAME} \
