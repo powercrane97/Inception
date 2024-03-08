@@ -18,7 +18,6 @@ else
 fi
 	
 # shutting down mysql service
-sleep 1
 mysqladmin -uroot --password=$SQL_ROOT_PASSWORD shutdown
 	
 # launching mysql in foreground with pid=1
