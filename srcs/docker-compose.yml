@@ -25,7 +25,7 @@ services:
       test: mysqladmin ping --host=localhost -p${SQL_ROOT_PASSWORD}
       interval: 5s
       timeout: 1s
-      retries: 20
+      retries: 10
       start_period: 5s
   wordpress:
     depends_on:
