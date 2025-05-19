@@ -1,8 +1,27 @@
-# Inception Project
+# Inception
 
 ## Project Overview
 
 This project sets up a small web server infrastructure using Docker and Docker Compose. It includes Nginx, WordPress, and MariaDB, each running in a dedicated container. The goal is to learn about containerization, service orchestration, and custom Docker image building.
+
+## App's structure overview
+
+![The links between the docker compose services and volumes](./overview.png)
+
+## Service Purposes
+
+*   **Nginx (`srcs/requirements/nginx`):**
+    *   Acts as a web server and reverse proxy.
+    *   Handles HTTPS (TLSv1.2/TLSv1.3) requests and forwards PHP requests to WordPress.
+
+*   **WordPress (`srcs/requirements/wordpress`):**
+    *   Runs the WordPress application with php-fpm.
+    *   Connects to MariaDB for database storage.
+    *   Website files are stored in a persistent volume (`wordpress_data`).
+
+*   **MariaDB (`srcs/requirements/mariadb`):**
+    *   Provides the SQL database service for WordPress.
+    *   Database is stored in a persistent volume (`mariadb_data`).
 
 ## Setup Steps
 
@@ -43,22 +62,3 @@ This project sets up a small web server infrastructure using Docker and Docker C
 *   `make clean`: Stops/removes containers and built images.
 *   `make fclean`: Performs `clean` and also removes data volumes (WordPress site and database will be lost).
 *   `make re`: Rebuilds and restarts everything (equivalent to `fclean` then `all`).
-
-## Service Purposes
-
-*   **Nginx (`srcs/requirements/nginx`):**
-    *   Acts as a web server and reverse proxy.
-    *   Handles HTTPS (TLSv1.2/TLSv1.3) requests and forwards PHP requests to WordPress.
-
-*   **WordPress (`srcs/requirements/wordpress`):**
-    *   Runs the WordPress application with php-fpm.
-    *   Connects to MariaDB for database storage.
-    *   Website files are stored in a persistent volume (`wordpress_data`).
-
-*   **MariaDB (`srcs/requirements/mariadb`):**
-    *   Provides the SQL database service for WordPress.
-    *   Database is stored in a persistent volume (`mariadb_data`).
-
-## App's structure overview
-
-![The links between the docker compose services and volumes](./overview.png)
